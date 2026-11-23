@@ -51,6 +51,11 @@ the `X-Figma-Token` header. Live hydration calls `GET /v1/files/:key`, then
 `/comments` and `/dev_resources` (those two degrade to `[]` with a warning if
 inaccessible).
 
+When none of those is set, the CLI fills `FIGMA_TOKEN` from the macOS keychain through
+[`macos-keychain-env`](https://github.com/multistageharness/macos-keychain-env), vendored at `./vendor/macos-keychain-env`
+(`make vendor`, then `make secret KEY=FIGMA_TOKEN`). Setup, validation and troubleshooting:
+[docs/keychain-env.md](docs/keychain-env.md).
+
 ## Offline mode
 
 `--input <path>` queries a local JSON file — no token, no network. Expected

@@ -109,6 +109,8 @@ describe("figma-find e2e", () => {
 
   it("no token and no --input exits 2 naming the three env vars", async () => {
     const r = await runCli(["find", KEY, "--name", "x"], {
+      // Otherwise the CLI fills the token from the keychain (docs/keychain-env.md).
+      FIGMA_SECRETS_BACKEND: "env",
       FIGMA_TOKEN: "",
       FIGMA_API_TOKEN: "",
       FIGMA_ACCESS_TOKEN: "",
